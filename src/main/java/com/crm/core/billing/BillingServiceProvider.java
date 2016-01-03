@@ -1,5 +1,4 @@
 package com.crm.core.billing;
-import com.crm.core.billing.gateway.annotations.Paypal;
 import com.crm.core.billing.impl.PaypalImpl;
 import com.crm.core.billing.impl.StripeImpl;
 import com.crm.core.billing.types.BillingType;
@@ -7,19 +6,18 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
 
-
+@Singleton
 public class BillingServiceProvider implements Provider<BillingInterface>
 {
 	private final Provider<StripeImpl> stripeImpl;
 	private final Provider<PaypalImpl> paypalImpl;
-	private final String type = null;
+	
 	
 	@Inject
-	public BillingServiceProvider(Provider<StripeImpl> stripeImpl, Provider<PaypalImpl> paypalImpl, String type) {
+	public BillingServiceProvider(Provider<StripeImpl> stripeImpl, Provider<PaypalImpl> paypalImpl) {
 		// TODO Auto-generated constructor stub
 		this.stripeImpl = stripeImpl;
 		this.paypalImpl = paypalImpl;
-		
 	}
 	
 	public BillingInterface get() {

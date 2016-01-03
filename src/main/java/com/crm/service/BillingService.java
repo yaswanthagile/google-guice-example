@@ -8,7 +8,7 @@ import com.google.inject.Inject;
 
 public class BillingService {
 
-	private BillingServiceProvider provider;
+	private final BillingServiceProvider provider;
 	
 	@Inject
 	private BillingService(BillingServiceProvider provider, String type)

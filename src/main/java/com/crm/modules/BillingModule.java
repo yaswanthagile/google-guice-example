@@ -11,8 +11,6 @@ import com.google.inject.name.Names;
 
 public class BillingModule extends AbstractModule {
 	
-	BillingInterface billingImpl = null;
-
 	@Override
 	protected void configure() {
 		// TODO Auto-generated method stub
