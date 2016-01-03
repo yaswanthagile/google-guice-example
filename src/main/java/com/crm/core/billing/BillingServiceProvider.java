@@ -6,29 +6,25 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
 
-@Singleton
+
 public class BillingServiceProvider implements Provider<BillingInterface>
 {
 	private final Provider<StripeImpl> stripeImpl;
 	private final Provider<PaypalImpl> paypalImpl;
+	private final BillingType billingType;
 	
 	
 	@Inject
-	public BillingServiceProvider(Provider<StripeImpl> stripeImpl, Provider<PaypalImpl> paypalImpl) {
+	public BillingServiceProvider(Provider<StripeImpl> stripeImpl, Provider<PaypalImpl> paypalImpl, BillingType billingType) {
 		// TODO Auto-generated constructor stub
 		this.stripeImpl = stripeImpl;
 		this.paypalImpl = paypalImpl;
+		this.billingType = billingType;
 	}
 	
 	public BillingInterface get() {
-		// TODO Auto-generated method stub
-		return stripeImpl.get();
-	}
-	
-	public BillingInterface getBillingService(BillingType type)
-	{
 		BillingInterface billingImpl = null;
-		switch(type)
+		switch(billingType)
 		{
 			case STRIPE :  billingImpl = stripeImpl.get();
 			break;
@@ -38,5 +34,4 @@ public class BillingServiceProvider implements Provider<BillingInterface>
 		
 		return billingImpl;
 	}
-	
 }

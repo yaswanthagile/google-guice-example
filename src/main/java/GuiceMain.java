@@ -15,12 +15,12 @@ public class GuiceMain {
 			protected void configure() {
 				// TODO Auto-generated method stub
 				super.configure();
-				bind(String.class).toInstance(BillingType.STRIPE.toString());
+				bind(BillingType.class).toInstance(BillingType.STRIPE);
 			}
 		});
 	
 		BillingService service = injector.getInstance(BillingService.class);
 			//System.out.println(service);
-			service.purchaseOrder(null, BillingType.STRIPE);
+			service.purchaseOrder(null);
 	}
 }

@@ -8,24 +8,21 @@ import com.google.inject.Inject;
 
 public class BillingService {
 
-	private final BillingServiceProvider provider;
+	private final BillingInterface billing;
 	
 	@Inject
-	private BillingService(BillingServiceProvider provider, String type)
+	private BillingService(BillingInterface billing)
 	{
 		System.out.println("Injected");
-		System.out.println(type);
-		this.provider = provider;
-		System.out.println(provider);
+		this.billing = billing;
 	}
 	
-	public void purchaseOrder(Order order, BillingType billingType)
+	public void purchaseOrder(Order order)
 	{
-		BillingInterface billing = provider.getBillingService(billingType);
 		System.out.println(billing);
 	}
 	
-	public void cancelOrder(String orderId, BillingType billingType)
+	public void cancelOrder(String orderId)
 	{
 		
 	}
